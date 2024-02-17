@@ -30,7 +30,7 @@ export default function VideoLoader() {
   }
   return (
     <div className="bg-black min-h-[100vh] p-5">
-      <div className="max-w-6xl mx-auto mt-[56px] grid grid-cols-[60%,40%] gap-5">
+      <div className="max-w-6xl mx-auto mt-[56px] grid lg:grid-cols-[60%,40%] gap-5">
         <div>
           <div className="w-full h-[320px] skeleton rounded-lg"></div>
           <div className="mt-3">
@@ -42,7 +42,7 @@ export default function VideoLoader() {
                 <span className="h-2 w-10 skeleton rounded-lg"></span>
               </div>
             </div>
-            <div className="mt-3">
+            <div className="mt-3 hidden lg:block">
               <h2 className="h-2 skeleton rounded-lg w-[60%]"></h2>
               <div>{comments}</div>
             </div>

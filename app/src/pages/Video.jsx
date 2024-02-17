@@ -109,7 +109,7 @@ export default function Video() {
         <VideoLoader />
       ) : (
         <div className="bg-black min-h-[100vh] p-5">
-          <div className="max-w-6xl mx-auto mt-[56px] grid grid-cols-[60%,40%] gap-5">
+          <div className="max-w-6xl mx-auto mt-[56px] grid lg:grid-cols-[60%,40%] gap-5">
             <div className="text-white">
               <ReactPlayer
                 url={`https://www.youtube.com/watch?v=${id}`}
@@ -131,7 +131,7 @@ export default function Video() {
                     </span>
                   </div>
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 hidden lg:block">
                   <h2 className="text-[#aaa] capitalize font-semibold text-lg">
                     comments
                   </h2>

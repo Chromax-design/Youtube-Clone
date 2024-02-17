@@ -21,7 +21,7 @@ export default function () {
     <>
       <PartSide category={category} setCategory={setCategory} />
       <div className="bg-black min-h-[100vh] max-sm:mt-[112px] mt-[56px] p-5">
-        <div className="max-sm:w-full w-[calc(100%-220px)] ml-auto">
+        <div className="max-sm:w-full w-[calc(100%-220px)] max-sm:mx-auto sm:ml-auto">
         <h2 className="text-white text-2xl capitalize font-semibold mb-4">{category} videos</h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
             {isLoading == true ? (

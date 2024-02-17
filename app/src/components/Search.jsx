@@ -22,8 +22,8 @@ export default function Search() {
   return (
     <>
       <Navigation />
-      <div className="max-w-5xl mx-auto mt-[56px]">
-        <h2 className="capitalize text-xl font-semibold tracking-widest text-white mt-[100px] mb-10">
+      <div className="max-w-5xl mx-auto mt-[56px] p-5">
+        <h2 className="capitalize text-xl font-semibold tracking-widest text-white mt-10 mb-10">
           search results:
         </h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
