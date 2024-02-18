@@ -45,17 +45,17 @@ const SuggestedVideo = ({ video }) => {
     return null; // handle this later, video does not exist
   }
   return (
-    <div className="flex gap-2 items-start">
+    <div className="flex max-sm:flex-col sm:gap-2 items-start">
       <Link to={`/video/${video.id.videoId}`}>
         <img
           src={video?.snippet?.thumbnails?.high?.url}
           alt=""
-          className=" aspect-video max-w-[170px] h-full rounded-lg"
+          className=" aspect-video sm:max-w-[170px] h-full rounded-lg"
         />
       </Link>
       <div>
         <Link to={`/video/${video.id.videoId}`}>
-          <h3 className="text-white mb-3 mt-2 text-sm font-medium line-clamp-2">
+          <h3 className="text-white mb-3 sm:mt-2 text-sm font-medium line-clamp-2">
             {video.snippet.title}
           </h3>
         </Link>

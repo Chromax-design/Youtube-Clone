@@ -26,7 +26,7 @@ export default function Search() {
         <h2 className="capitalize text-xl font-semibold tracking-widest text-white mt-10 mb-10">
           search results:
         </h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
           {isLoading ? (
             <HomeFeedLoader />
           ) : results.length > 0 ? (
