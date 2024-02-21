@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
 import liked from "/assets/icons/liked.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   useGetSuggestedVideosQuery,
   useGetVideoCommentsQuery,
@@ -15,22 +15,22 @@ const CommentComponent = ({ comment }) => {
   return (
     <div className="flex gap-3 items-start mt-3">
       <img
-        src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl}
+        src={comment?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl}
         alt=""
         className="w-12 h-12 rounded-full"
       />
       <div>
         <h3 className="font-bold capitalize ">
-          {comment.snippet.topLevelComment.snippet.authorDisplayName}
+          {comment?.snippet?.topLevelComment?.snippet?.authorDisplayName}
         </h3>
         <p className="text-sm mt-1">
-          {comment.snippet.topLevelComment.snippet.textDisplay}
+          {comment?.snippet?.topLevelComment?.snippet?.textDisplay}
         </p>
         <div className="flex gap-4 items-center mt-3">
           <div className="flex gap-1 items-center">
             <img src={liked} alt="" className="w-6" />
             <span className="text-sm text-[#aaa]">
-              {comment.snippet.topLevelComment.snippet.likeCount}
+              {comment?.snippet?.topLevelComment?.snippet?.likeCount}
             </span>
           </div>
           <span className="capitalize text-sm text-[#aaa]">reply</span>
@@ -41,12 +41,13 @@ const CommentComponent = ({ comment }) => {
 };
 
 const SuggestedVideo = ({ video }) => {
+  const navigate = useNavigate();
   if (!video?.snippet?.thumbnails?.high?.url || !video) {
-    return null; // handle this later, video does not exist
+    navigate('/search')
   }
   return (
     <div className="flex max-sm:flex-col sm:gap-2 items-start">
-      <Link to={`/video/${video.id.videoId}`}>
+      <Link to={`/video/${video?.id?.videoId}`}>
         <img
           src={video?.snippet?.thumbnails?.high?.url}
           alt=""
@@ -54,15 +55,15 @@ const SuggestedVideo = ({ video }) => {
         />
       </Link>
       <div>
-        <Link to={`/video/${video.id.videoId}`}>
+        <Link to={`/video/${video?.id?.videoId}`}>
           <h3 className="text-white mb-3 sm:mt-2 text-sm font-medium line-clamp-2">
-            {video.snippet.title}
+            {video?.snippet?.title}
           </h3>
         </Link>
         <div className="text-xs capitalize space-y-1">
-          <p className="text-[#aaa]">{video.snippet.channelTitle}</p>
+          <p className="text-[#aaa]">{video?.snippet?.channelTitle}</p>
           <p className="text-[#aaa]">
-            {formatToDateString(video.snippet.publishedAt)}
+            {formatToDateString(video?.snippet?.publishedAt)}
           </p>
         </div>
       </div>
@@ -76,8 +77,8 @@ export default function Video() {
   const [suggestedVideos, setSuggestedVideos] = useState([]);
   const [comments, setComments] = useState([]);
   const { data, isLoading } = useGetVideoDetailsQuery(id);
-  const response = useGetSuggestedVideosQuery(id);
-  const commentResponse = useGetVideoCommentsQuery(id);
+  const {data: suggested} = useGetSuggestedVideosQuery(id);
+  const {data: commented} = useGetVideoCommentsQuery(id);
 
   useEffect(() => {
     if (data) {
@@ -88,20 +89,20 @@ export default function Video() {
   }, [data]);
 
   useEffect(() => {
-    if (response.data) {
-      setSuggestedVideos(response.data.items);
+    if (suggested) {
+      setSuggestedVideos(suggested.items);
     } else {
       setSuggestedVideos([]);
     }
-  }, [response.data]);
+  }, [suggested]);
 
   useEffect(() => {
-    if (commentResponse.data) {
-      setComments(commentResponse.data.items);
+    if (commented) {
+      setComments(commented.items);
     } else {
       setComments([]);
     }
-  }, [commentResponse.data]);
+  }, [commented]);
   return (
     <>
       <Navigation />
@@ -136,9 +137,11 @@ export default function Video() {
                     comments
                   </h2>
                   <div>
-                    {comments.map((comment, i) => {
-                      return <CommentComponent key={i} comment={comment} />;
-                    })}
+                    {!comments
+                      ? <div className="text-sm tracking-widest capitalize mt-5 font-medium text-[#aaa]">No comments found</div>
+                      : comments?.map((comment, i) => {
+                          return <CommentComponent key={i} comment={comment} />;
+                        })}
                   </div>
                 </div>
               </div>
@@ -149,7 +152,7 @@ export default function Video() {
                 suggested videos
               </h2>
               <div className="space-y-2">
-                {suggestedVideos.map((video) => {
+                {suggestedVideos?.map((video) => {
                   return <SuggestedVideo video={video} />;
                 })}
               </div>

@@ -72,7 +72,7 @@ export default function Navigation() {
               >
                 <input
                   type="text"
-                  className="w-full p-3 rounded-full bg-[#121212] border-[#303030] border-2 focus:outline-none text-white"
+                  className="w-full p-2 rounded-full bg-[#121212] border-[#303030] border-2 focus:outline-none text-white"
                   name="search"
                   value={searchData.search}
                   onChange={handleChange}

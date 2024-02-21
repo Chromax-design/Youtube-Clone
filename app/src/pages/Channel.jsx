@@ -26,7 +26,6 @@ export default function Channel() {
     }
   }, [data, channelVideo]);
 
-  console.log(channelVideos);
   return (
     <>
       <Navigation />
@@ -36,7 +35,7 @@ export default function Channel() {
         <Nodata />
       ) : (
         <div className=" max-w-5xl mx-auto min-h-[100vh] bg-black p-3">
-          <div className="flex items-center gap-5 mt-[70px]">
+          <div className="flex max-sm:flex-col max-sm:text-center items-center gap-5 mt-[70px]">
             <div className="w-[160px] h-[160px] rounded-full bg-[url('https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg')] bg-cover bg-center">
               <img
                 src={channels?.brandingSettings?.image?.bannerExternalUrl}
@@ -45,7 +44,7 @@ export default function Channel() {
               />
             </div>
             <div className="gap-2 flex flex-col justify-center">
-              <h2 className="capitalize text-4xl font-semibold text-white">
+              <h2 className="capitalize text-2xl sm:text-4xl font-semibold text-white">
                 {channels?.brandingSettings?.channel?.title}
               </h2>
               <p className=" text-[#AAAAAA]">
