@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import { VideoComponent } from "./VideoComponent";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetYoutubeVideosQuery } from "../features/apiSlice";
 import HomeFeedLoader from "./Loaders/HomeFeedLoader";
 import Nodata from "./Nodata";

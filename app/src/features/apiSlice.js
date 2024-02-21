@@ -66,6 +66,17 @@ export const youtubeApi = createApi({
         headers,
       }),
     }),
+    getChannelVideos: builder.query({
+      query: (params) => ({
+        url: "search",
+        params: {
+          channelId: `${params}`,
+          part: "snippet,id",
+          maxResults: "50",
+        },
+        headers,
+      }),
+    }),
   }),
 });
 
@@ -75,4 +86,5 @@ export const {
   useGetSuggestedVideosQuery,
   useGetVideoCommentsQuery,
   useGetChannelDetailsQuery,
+  useGetChannelVideosQuery
 } = youtubeApi;

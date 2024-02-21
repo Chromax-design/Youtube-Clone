@@ -17,6 +17,7 @@ export default function () {
       setVideos([]);
     }
   }, [data, category]);
+  console.log(data)
   return (
     <>
       <PartSide category={category} setCategory={setCategory} />

@@ -8,9 +8,9 @@ export const VideoComponent = ({ video }) => {
     }
     return (
       <div className="">
-        <Link className="w-full" to={`/video/${video.id.videoId}`}>
+        <Link className="w-full" to={`/video/${video?.id?.videoId}`}>
           <img
-            src={video?.snippet?.thumbnails?.high.url}
+            src={video?.snippet?.thumbnails?.high?.url}
             alt=""
             className=" aspect-video object-cover w-full rounded-lg"
           />
@@ -18,7 +18,7 @@ export const VideoComponent = ({ video }) => {
         <div className="py-2">
           <div className="space-y-2">
             <Link
-              to={`/video/${video.id.videoId}`}
+              to={`/video/${video?.id?.videoId}`}
               className="text-sm font-semibold capitalize text-white line-clamp-2"
             >
               <p>{video.snippet.title}</p>
