@@ -13,18 +13,22 @@ export default function Channel() {
   const { id } = useParams();
   const [channels, setChannel] = useState([]);
   const [channelVideos, setChannelVideos] = useState([]);
-  const { data } = useGetChannelDetailsQuery(id);
+  const { data: channelDetail } = useGetChannelDetailsQuery(id);
   const { data: channelVideo, isLoading } = useGetChannelVideosQuery(id);
 
   useEffect(() => {
-    if (data && channelVideo) {
-      setChannel(data.items[0]);
-      setChannelVideos(channelVideo?.items);
+    if (channelDetail) {
+      setChannel(channelDetail?.items[0]);
     } else {
       setChannel([]);
+    }
+
+    if (channelVideo) {
+      setChannelVideos(channelVideo?.items);
+    } else {
       setChannelVideos([]);
     }
-  }, [data, channelVideo]);
+  }, [channelDetail, channelVideo]);
 
   return (
     <>

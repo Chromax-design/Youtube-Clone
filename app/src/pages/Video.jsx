@@ -1,108 +1,45 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
-import liked from "/assets/icons/liked.svg";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   useGetSuggestedVideosQuery,
   useGetVideoCommentsQuery,
   useGetVideoDetailsQuery,
 } from "../features/apiSlice";
-import ReactPlayer from "react-player";
-import { formatToDateString } from "../utils/formatDate";
+import ReactPlayer from "react-player/youtube";
 import VideoLoader from "../components/Loaders/VideoLoader";
-
-const CommentComponent = ({ comment }) => {
-  return (
-    <div className="flex gap-3 items-start mt-3">
-      <img
-        src={comment?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl}
-        alt=""
-        className="w-12 h-12 rounded-full"
-      />
-      <div>
-        <h3 className="font-bold capitalize ">
-          {comment?.snippet?.topLevelComment?.snippet?.authorDisplayName}
-        </h3>
-        <p className="text-sm mt-1">
-          {comment?.snippet?.topLevelComment?.snippet?.textDisplay}
-        </p>
-        <div className="flex gap-4 items-center mt-3">
-          <div className="flex gap-1 items-center">
-            <img src={liked} alt="" className="w-6" />
-            <span className="text-sm text-[#aaa]">
-              {comment?.snippet?.topLevelComment?.snippet?.likeCount}
-            </span>
-          </div>
-          <span className="capitalize text-sm text-[#aaa]">reply</span>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const SuggestedVideo = ({ video }) => {
-  const navigate = useNavigate();
-  if (!video?.snippet?.thumbnails?.high?.url || !video) {
-    navigate('/search')
-  }
-  return (
-    <div className="flex max-sm:flex-col sm:gap-2 items-start">
-      <Link to={`/video/${video?.id?.videoId}`}>
-        <img
-          src={video?.snippet?.thumbnails?.high?.url}
-          alt=""
-          className=" aspect-video sm:max-w-[170px] h-full rounded-lg"
-        />
-      </Link>
-      <div>
-        <Link to={`/video/${video?.id?.videoId}`}>
-          <h3 className="text-white mb-3 sm:mt-2 text-sm font-medium line-clamp-2">
-            {video?.snippet?.title}
-          </h3>
-        </Link>
-        <div className="text-xs capitalize space-y-1">
-          <p className="text-[#aaa]">{video?.snippet?.channelTitle}</p>
-          <p className="text-[#aaa]">
-            {formatToDateString(video?.snippet?.publishedAt)}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+import CommentComponent from "../components/CommentComponent";
+import SuggestedVideo from "../components/SuggestedVideo";
 
 export default function Video() {
   const { id } = useParams();
   const [videoDetails, setVideoDetails] = useState([]);
   const [suggestedVideos, setSuggestedVideos] = useState([]);
   const [comments, setComments] = useState([]);
-  const { data, isLoading } = useGetVideoDetailsQuery(id);
-  const {data: suggested} = useGetSuggestedVideosQuery(id);
-  const {data: commented} = useGetVideoCommentsQuery(id);
+  const { data: videoInfo, isLoading } = useGetVideoDetailsQuery(id);
+  const { data: suggested } = useGetSuggestedVideosQuery(id);
+  const { data: commented } = useGetVideoCommentsQuery(id);
 
   useEffect(() => {
-    if (data) {
-      setVideoDetails(data.items[0]);
+    if (videoInfo) {
+      setVideoDetails(videoInfo.items[0]);
     } else {
       setVideoDetails([]);
     }
-  }, [data]);
 
-  useEffect(() => {
     if (suggested) {
       setSuggestedVideos(suggested.items);
     } else {
       setSuggestedVideos([]);
     }
-  }, [suggested]);
 
-  useEffect(() => {
     if (commented) {
       setComments(commented.items);
     } else {
       setComments([]);
     }
-  }, [commented]);
+  }, [videoInfo, suggested, commented]);
+
   return (
     <>
       <Navigation />
@@ -137,11 +74,15 @@ export default function Video() {
                     comments
                   </h2>
                   <div>
-                    {!comments
-                      ? <div className="text-sm tracking-widest capitalize mt-5 font-medium text-[#aaa]">No comments found</div>
-                      : comments?.map((comment, i) => {
-                          return <CommentComponent key={i} comment={comment} />;
-                        })}
+                    {!comments ? (
+                      <div className="text-sm tracking-widest capitalize mt-5 font-medium text-[#aaa]">
+                        No comments found
+                      </div>
+                    ) : (
+                      comments?.map((comment, i) => {
+                        return <CommentComponent key={i} comment={comment} />;
+                      })
+                    )}
                   </div>
                 </div>
               </div>
