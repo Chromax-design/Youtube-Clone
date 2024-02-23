@@ -18,7 +18,7 @@ export default function ChannelFeedLoader() {
   }
   return (
     <div className="max-w-5xl mx-auto min-h-[100vh] bg-black p-3">
-      <div className="flex items-center gap-5 mt-[70px]">
+      <div className="flex max-sm:flex-col max-sm:text-center items-center gap-5 mt-[70px]">
         <div className="w-[160px] h-[160px] rounded-full skeleton"></div>
         <div>
           <p className="h-2 w-[170px] skeleton mb-4 rounded-lg"></p>
