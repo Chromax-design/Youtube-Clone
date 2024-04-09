@@ -28,3 +28,19 @@ body{
   border-radius: 10px;
 }
 
+.scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.skeleton{
+  opacity: 0.5;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0%{
+      background-color: hsl(200, 20%, 20%);
+  }100%{
+      background-color: hsl(200, 20%, 40%);
+  }
+}

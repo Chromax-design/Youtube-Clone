@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Navigation from "./Navigation";
-import { VideoComponent } from "./VideoComponent";
+import { VideoComponent } from "../components/VideoComponent";
 import { useParams } from "react-router-dom";
 import { useGetYoutubeVideosQuery } from "../features/apiSlice";
-import HomeFeedLoader from "./Loaders/HomeFeedLoader";
-import Nodata from "./Nodata";
+import HomeFeedLoader from "../components/Loaders/HomeFeedLoader";
+import Nodata from "../components/Nodata";
 
-export default function Search() {
+export const Search = () => {
   const { search } = useParams();
   const [results, setResults] = useState([]);
   const { data, isLoading } = useGetYoutubeVideosQuery(search);
@@ -21,7 +20,6 @@ export default function Search() {
 
   return (
     <>
-      <Navigation />
       <div className="max-w-5xl mx-auto mt-[56px] p-5">
         <h2 className="capitalize text-xl font-semibold tracking-widest text-white mt-10 mb-10">
           search results:
@@ -40,4 +38,4 @@ export default function Search() {
       </div>
     </>
   );
-}
+};

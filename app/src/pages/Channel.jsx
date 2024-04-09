@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import Navigation from "../components/Navigation";
 import {
   useGetChannelDetailsQuery,
   useGetChannelVideosQuery,
@@ -8,8 +7,9 @@ import { useEffect, useState } from "react";
 import { VideoComponent } from "../components/VideoComponent";
 import ChannelFeedLoader from "../components/Loaders/ChannelFeedLoader";
 import Nodata from "../components/Nodata";
+import { ChannelInfo } from "../components/Channel/ChannelInfo";
 
-export default function Channel() {
+export const Channel = () => {
   const { id } = useParams();
   const [channels, setChannel] = useState([]);
   const [channelVideos, setChannelVideos] = useState([]);
@@ -32,32 +32,13 @@ export default function Channel() {
 
   return (
     <>
-      <Navigation />
       {isLoading == true ? (
         <ChannelFeedLoader />
       ) : !channelVideos ? (
         <Nodata />
       ) : (
         <div className=" max-w-5xl mx-auto min-h-[100vh] bg-black p-3">
-          <div className="flex max-sm:flex-col max-sm:text-center items-center gap-5 mt-[70px]">
-            <div className="w-[160px] h-[160px] rounded-full bg-[url('https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg')] bg-cover bg-center">
-              <img
-                src={channels?.brandingSettings?.image?.bannerExternalUrl}
-                alt=""
-                className="w-[160px] h-[160px] rounded-full object-cover"
-              />
-            </div>
-            <div className="gap-2 flex flex-col justify-center">
-              <h2 className="capitalize text-2xl sm:text-4xl font-semibold text-white">
-                {channels?.brandingSettings?.channel?.title}
-              </h2>
-              <p className=" text-[#AAAAAA]">
-                {channels?.snippet?.customUrl} <br />{" "}
-                {channels?.statistics?.subscriberCount} subscribers •{" "}
-                {channels?.statistics?.videoCount} videos
-              </p>
-            </div>
-          </div>
+          <ChannelInfo channels={channels} />
           <div className="mt-6">
             <h2 className="text-3xl capitalize text-white font-semibold">
               videos
@@ -72,4 +53,4 @@ export default function Channel() {
       )}
     </>
   );
-}
+};

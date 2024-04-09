@@ -1,11 +1,10 @@
 import React from "react";
-import "./skeleton.css";
 
 export default function VideoLoader() {
   let suggested = [];
   for (let i = 0; i < 5; i++) {
     suggested.push(
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 items-start" key={i}>
         <div className="w-[170px] h-[100px] skeleton rounded-lg"></div>
         <div className="w-full mt-3">
           <div className="mb-2 skeleton w-[80%] h-2 rounded-lg"></div>
@@ -19,7 +18,7 @@ export default function VideoLoader() {
   let comments = [];
   for (let i = 0; i < 5; i++) {
     comments.push(
-      <div className="flex gap-3 items-start mt-3">
+      <div className="flex gap-3 items-start mt-3" key={i}>
         <div className="w-12 h-12 rounded-full skeleton"></div>
         <div className="w-full mt-3">
           <div className="mb-2 skeleton w-[70%] h-2 rounded-lg"></div>

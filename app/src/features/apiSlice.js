@@ -7,6 +7,7 @@ const headers = {
 
 export const youtubeApi = createApi({
   reducerPath: "youtubeApi",
+  tagTypes: "youtube",
   baseQuery: fetchBaseQuery({ baseUrl: "https://youtube-v31.p.rapidapi.com/" }),
   endpoints: (builder) => ({
     getYoutubeVideos: builder.query({

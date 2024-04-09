@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navigation from "../components/Navigation";
 import { useParams } from "react-router-dom";
 import {
   useGetSuggestedVideosQuery,
@@ -11,7 +10,7 @@ import VideoLoader from "../components/Loaders/VideoLoader";
 import CommentComponent from "../components/CommentComponent";
 import SuggestedVideo from "../components/SuggestedVideo";
 
-export default function Video() {
+export const Video = () => {
   const { id } = useParams();
   const [videoDetails, setVideoDetails] = useState([]);
   const [suggestedVideos, setSuggestedVideos] = useState([]);
@@ -42,7 +41,6 @@ export default function Video() {
 
   return (
     <>
-      <Navigation />
       {isLoading ? (
         <VideoLoader />
       ) : (
@@ -103,4 +101,4 @@ export default function Video() {
       )}
     </>
   );
-}
+};

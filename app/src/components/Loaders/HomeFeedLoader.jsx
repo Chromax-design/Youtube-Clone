@@ -1,17 +1,15 @@
 import React from "react";
-import "./skeleton.css"
 
 export default function HomeFeedLoader() {
   let skeleton = [];
   for (let i = 0; i < 15; i++) {
     skeleton.push(
-      <div className=" rounded-lg">
+      <div className=" rounded-lg" key={i}>
         <div className="w-full h-[250px] skeleton rounded-lg"></div>
         <div>
           <div>
             <p className="h-2 w-full skeleton mt-2 rounded-lg"></p>
             <p className="h-2 w-[80%] skeleton mt-2 rounded-lg"></p>
-            {/* <p className="h-3 w-[80%] skeleton mt-2 rounded-lg"></p> */}
           </div>
         </div>
       </div>

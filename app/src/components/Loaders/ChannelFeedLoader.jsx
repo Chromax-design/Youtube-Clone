@@ -1,5 +1,4 @@
 import React from "react";
-import "./skeleton.css";
 
 export default function ChannelFeedLoader() {
   let skeleton = [];
