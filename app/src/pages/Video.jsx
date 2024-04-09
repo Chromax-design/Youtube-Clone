@@ -6,7 +6,6 @@ import {
 } from "../features/apiSlice";
 import ReactPlayer from "react-player/youtube";
 import { VideoLoader } from "../components/Loaders/VideoLoader";
-import { CommentComponent } from "../components/Comments/CommentComponent";
 import { Comment } from "../components/Comments/Comment";
 import { MainContainer } from "../UI/MainContainer";
 export const Video = () => {
@@ -15,6 +14,7 @@ export const Video = () => {
   const [comments, setComments] = useState([]);
   const { data: videoInfo, isLoading } = useGetVideoDetailsQuery(id);
   const { data: commented } = useGetVideoCommentsQuery(id);
+  console.log(videoDetails?.snippet?.thumbnails)
 
   useEffect(() => {
     if (videoInfo) {
@@ -40,6 +40,7 @@ export const Video = () => {
             url={`https://www.youtube.com/watch?v=${id}`}
             width={"100%"}
             controls
+            light={`${videoDetails?.snippet?.thumbnails?.maxres.url}`}
           />
           <div className="text-white mt-5">
             <p className="text-lg">{videoDetails?.snippet?.title}</p>
