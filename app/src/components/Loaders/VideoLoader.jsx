@@ -1,19 +1,6 @@
 import React from "react";
 
-export default function VideoLoader() {
-  let suggested = [];
-  for (let i = 0; i < 5; i++) {
-    suggested.push(
-      <div className="flex gap-2 items-start" key={i}>
-        <div className="w-[170px] h-[100px] skeleton rounded-lg"></div>
-        <div className="w-full mt-3">
-          <div className="mb-2 skeleton w-[80%] h-2 rounded-lg"></div>
-          <div className="mb-2 skeleton w-[70%] h-2 rounded-lg"></div>
-          <div className="mb-2 skeleton w-[60%] h-2 rounded-lg"></div>
-        </div>
-      </div>
-    );
-  }
+export const VideoLoader = () => {
 
   let comments = [];
   for (let i = 0; i < 5; i++) {
@@ -29,7 +16,7 @@ export default function VideoLoader() {
   }
   return (
     <div className="bg-black min-h-[100vh] p-5">
-      <div className="max-w-6xl mx-auto mt-[56px] grid lg:grid-cols-[60%,40%] gap-5">
+      <div className="max-w-5xl mx-auto mt-[56px]">
         <div>
           <div className="w-full h-[320px] skeleton rounded-lg"></div>
           <div className="mt-3">
@@ -47,12 +34,7 @@ export default function VideoLoader() {
             </div>
           </div>
         </div>
-
-        <div>
-          <div className="mb-3 h-2 skeleton rounded-lg w-[70%]"></div>
-          <div className="space-y-2">{suggested}</div>
-        </div>
       </div>
     </div>
   );
-}
+};

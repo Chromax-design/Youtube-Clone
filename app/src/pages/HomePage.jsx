@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGetYoutubeVideosQuery } from "../features/apiSlice";
 import { SideBar } from "../components/Navigation/SideBar";
-import HomeFeedLoader from "../components/Loaders/HomeFeedLoader";
+import { HomeFeedLoader } from "../components/Loaders/HomeFeedLoader";
 import { VideoComponent } from "../components/VideoComponent";
 import { MainContainer } from "../UI/MainContainer";
 
@@ -9,6 +9,7 @@ export const HomePage = () => {
   const [videos, setVideos] = useState([]);
   const [category, setCategory] = useState("new");
   const { data, isLoading } = useGetYoutubeVideosQuery(`${category}`);
+  console.log(data)
 
   useEffect(() => {
     if (data) {

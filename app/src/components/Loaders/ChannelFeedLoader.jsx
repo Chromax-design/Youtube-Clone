@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ChannelFeedLoader() {
+export const ChannelFeedLoader = () => {
   let skeleton = [];
   for (let i = 0; i < 15; i++) {
     skeleton.push(
@@ -30,4 +30,4 @@ export default function ChannelFeedLoader() {
       </div>
     </div>
   );
-}
+};

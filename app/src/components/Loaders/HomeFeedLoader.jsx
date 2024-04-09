@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function HomeFeedLoader() {
+export const HomeFeedLoader = () => {
   let skeleton = [];
   for (let i = 0; i < 15; i++) {
     skeleton.push(
@@ -22,4 +22,4 @@ export default function HomeFeedLoader() {
       </div>
     </div>
   );
-}
+};

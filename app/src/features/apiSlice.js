@@ -33,18 +33,6 @@ export const youtubeApi = createApi({
         headers,
       }),
     }),
-    getSuggestedVideos: builder.query({
-      query: (params) => ({
-        url: "search",
-        params: {
-          relatedToVideoId: `${params}`,
-          part: "id,snippet",
-          type: "video",
-          maxResults: "50",
-        },
-        headers,
-      }),
-    }),
     getVideoComments: builder.query({
       query: (params) => ({
         url: "commentThreads",
@@ -84,7 +72,6 @@ export const youtubeApi = createApi({
 export const {
   useGetYoutubeVideosQuery,
   useGetVideoDetailsQuery,
-  useGetSuggestedVideosQuery,
   useGetVideoCommentsQuery,
   useGetChannelDetailsQuery,
   useGetChannelVideosQuery

@@ -1,7 +1,7 @@
 import React from "react";
 import liked from "/assets/icons/liked.svg"
 
-export default function CommentComponent({ comment }) {
+export const CommentComponent=({ comment })=> {
   return (
     <div className="flex gap-3 items-start mt-3">
       <img

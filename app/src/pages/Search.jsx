@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { VideoComponent } from "../components/VideoComponent";
 import { useParams } from "react-router-dom";
 import { useGetYoutubeVideosQuery } from "../features/apiSlice";
-import HomeFeedLoader from "../components/Loaders/HomeFeedLoader";
-import Nodata from "../components/Nodata";
+import { HomeFeedLoader } from "../components/Loaders/HomeFeedLoader";
+import { Nodata } from "../components/Nodata";
 
 export const Search = () => {
   const { search } = useParams();

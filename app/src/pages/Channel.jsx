@@ -5,8 +5,8 @@ import {
 } from "../features/apiSlice";
 import { useEffect, useState } from "react";
 import { VideoComponent } from "../components/VideoComponent";
-import ChannelFeedLoader from "../components/Loaders/ChannelFeedLoader";
-import Nodata from "../components/Nodata";
+import { ChannelFeedLoader } from "../components/Loaders/ChannelFeedLoader";
+import {Nodata} from "../components/Nodata";
 import { ChannelInfo } from "../components/Channel/ChannelInfo";
 
 export const Channel = () => {
